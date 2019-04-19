@@ -1,49 +1,47 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React from 'react';
+import { createStackNavigator, createAppContainer } from "react-navigation";
+import HomeScreen from './components/Home/HomeScreen';
+import RegulationsHomeSCreen from './components/Regulations/RegulationsHomeScreen';
+import FinanceActScreen from './components/Regulations/FinanceActScreen';
+import VatAct1991Screen from './components/Regulations/VatAct1991Screen';
+import VatSDAct2012BanScreen from './components/Regulations/VatSDAct2012BanScreen';
+import WeblinkScreen from './components/Regulations/WeblinkScreen';
+import VatAct2012EngScreen from './components/Regulations/VatAct2012EngScreen';
+import CheckBinScreen from './components/CheckBin/CheckBinScreen';
+import ResourcesHomeScreen from './components/Resources/ResourcesHomeScreen';
+import ReportsHomeSCreen from './components/Reports/ReportsHomeScreen';
+import FormsHomeScreen from './components/Forms/FormsHomeScreen';
+import OnlineHomeSCreen from './components/Online/OnlineHomeScreen';
+import LearningHomeScreen from './components/Learning/LearningHomeScreen';
+import ComplainLoginScreen from './components/Complain/ComplainLoginScreen';
+import SupportHomeSCreen from './components/Support/SupportHomeScreen';
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+const AppNavigator = createStackNavigator({
+    Home: HomeScreen,
+    Regulations: RegulationsHomeSCreen,
+    FinanceActScreen: FinanceActScreen,
+    VatAct1991Screen: VatAct1991Screen,
+    VatSDAct2012BanScreen: VatSDAct2012BanScreen,
+    VatAct2012EngScreen: VatAct2012EngScreen,
+    WeblinkScreen: WeblinkScreen,
+    CheckBinScreen: CheckBinScreen,
+    ResourcesHomeScreen: ResourcesHomeScreen,
+    ReportsHomeSCreen: ReportsHomeSCreen,
+    FormsHomeScreen: FormsHomeScreen,
+    OnlineHomeSCreen: OnlineHomeSCreen,
+    LearningHomeScreen: LearningHomeScreen,
+    ComplainLoginScreen: ComplainLoginScreen,
+    SupportHomeSCreen: SupportHomeSCreen,
+  },
+  {
+    initialRouteName: "Home"
+  }
+);
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+const AppContainer = createAppContainer(AppNavigator);
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends React.Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
+    return <AppContainer />;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
