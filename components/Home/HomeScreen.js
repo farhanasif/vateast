@@ -64,11 +64,12 @@ export default class HomeScreen extends React.Component {
                         <Text style={{color: 'white', marginTop: 10}}>Complain</Text>
                     </View>
                 </TouchableOpacity>
-                
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Act2012Screen')}>
                 <View style={{alignItems: 'center', width: width/3 }}>
                     <FontAwesome name="calculator" size={40} color="white" />
                     <Text style={{color: 'white', marginTop: 10}}>Calculator</Text>
                 </View>
+                </TouchableOpacity>
             </View>
             <View style={styles.buttonsContainer}>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('FormsHomeScreen')}>

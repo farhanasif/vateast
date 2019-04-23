@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Image, View, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, Image, View, Dimensions, ScrollView, Linking } from 'react-native';
 import TouchableScale from 'react-native-touchable-scale';
+import LinearGradient from 'react-native-linear-gradient';
 
 import { ListItem } from 'react-native-elements';
 //import console = require('console');
@@ -56,6 +57,13 @@ export default class SupportHomeSCreen extends React.Component {
             fontWeight: 'bold',
         },
     };
+
+    constructor(props){
+        super(props);
+        this.state = {
+            commobile: '16555'
+        }
+    }
     
 
     render() {
@@ -81,9 +89,10 @@ export default class SupportHomeSCreen extends React.Component {
                         key={i}
                         linearGradientProps={{
                             colors: l.linearGradientColors,
-                            start: [1, 0],
-                            end: [0.2, 0],
+                            start: {x: 0.0, y: 0.0},
+                            end: {x: 0.0, y: 0.8},
                         }}
+                        ViewComponent={LinearGradient}
                         title={l.name}
                         titleStyle={{ color: 'white', fontWeight: 'bold' }}
                         chevronColor="white"
@@ -96,10 +105,10 @@ export default class SupportHomeSCreen extends React.Component {
                         onPress={() => {
 
                             if(l.name === 'VAT Online Contact Center (16555)'){
-
+                                Linking.openURL(`tel:${this.state.commobile}`)
                             }
                             else if(l.name === 'Email Support(support@vat.gov.bd)'){
-
+                                Linking.openURL('mailto:support@vat.gov.bd?subject=Query&body=')
                             }
                             else{
                                 console.log(l.screen);

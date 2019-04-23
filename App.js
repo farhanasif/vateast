@@ -16,6 +16,8 @@ import LearningHomeScreen from './components/Learning/LearningHomeScreen';
 import ComplainLoginScreen from './components/Complain/ComplainLoginScreen';
 import SupportHomeSCreen from './components/Support/SupportHomeScreen';
 
+import Act2012Screen from './components/Calculator/Act2012Screen';
+
 const AppNavigator = createStackNavigator({
     Home: HomeScreen,
     Regulations: RegulationsHomeSCreen,
@@ -32,6 +34,7 @@ const AppNavigator = createStackNavigator({
     LearningHomeScreen: LearningHomeScreen,
     ComplainLoginScreen: ComplainLoginScreen,
     SupportHomeSCreen: SupportHomeSCreen,
+    Act2012Screen: Act2012Screen,
   },
   {
     initialRouteName: "Home"
