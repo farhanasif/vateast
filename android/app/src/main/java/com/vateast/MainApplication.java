@@ -5,7 +5,6 @@ import android.app.Application;
 import com.facebook.react.ReactApplication;
 import org.wonday.pdf.RCTPdfView;
 import com.RNFetchBlob.RNFetchBlobPackage;
-import com.kishanjvaghela.cardview.RNCardViewPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
@@ -32,7 +31,6 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new RCTPdfView(),
             new RNFetchBlobPackage(),
-            new RNCardViewPackage(),
             new LinearGradientPackage(),
             new RNGestureHandlerPackage(),
             new SplashScreenReactPackage(),

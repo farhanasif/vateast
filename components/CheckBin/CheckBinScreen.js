@@ -19,6 +19,14 @@ export default class CheckBinScreen extends React.Component {
         },
     };
 
+    constructor(props){
+        super(props);
+        this.state = {
+            load: false,
+            
+        }
+    }
+
     componentWillMount() {
         console.log('loaded')
     }
