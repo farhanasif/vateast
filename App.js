@@ -15,6 +15,7 @@ import OnlineHomeSCreen from './components/Online/OnlineHomeScreen';
 import LearningHomeScreen from './components/Learning/LearningHomeScreen';
 import ComplainLoginScreen from './components/Complain/ComplainLoginScreen';
 import SupportHomeSCreen from './components/Support/SupportHomeScreen';
+import CheckBinDetailScreen from './components/CheckBin/CheckBinDetailScreen';
 
 import Act2012Screen from './components/Calculator/Act2012Screen';
 
@@ -35,6 +36,7 @@ const AppNavigator = createStackNavigator({
     ComplainLoginScreen: ComplainLoginScreen,
     SupportHomeSCreen: SupportHomeSCreen,
     Act2012Screen: Act2012Screen,
+    CheckBinDetailScreen: CheckBinDetailScreen,
   },
   {
     initialRouteName: "Home"

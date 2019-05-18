@@ -82,8 +82,12 @@ export default class CheckBinScreen extends React.Component {
                 this.setState({ reply: "no data found with the BIN" });
               } else {
                 let reply = "Name: " + responseJson.old_info_info.Name;
-                console.log(reply);
-                this.setState({ reply });
+                //console.log(reply);
+                //this.setState({ reply });
+                this.props.navigation.navigate('CheckBinDetailScreen', {
+                    BIN: 'old',
+                    otherParam: responseJson,
+                });
               }
 
               console.log(JSON.stringify(responseJson));
@@ -108,8 +112,12 @@ export default class CheckBinScreen extends React.Component {
               this.setState({ reply: "no data found with the BIN" });
             } else {
               let reply = "Name: " + responseJson.new_info_info.NAME;
-              console.log(reply);
-              this.setState({ reply });
+              //console.log(reply);
+              //this.setState({ reply });
+              this.props.navigation.navigate('CheckBinDetailScreen', {
+                BIN: 'new',
+                otherParam: responseJson,
+              });
             }
 
             console.log(JSON.stringify(responseJson));

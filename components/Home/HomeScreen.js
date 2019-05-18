@@ -8,9 +8,6 @@ import LinearGradient from 'react-native-linear-gradient';
 
 
 export default class HomeScreen extends React.Component {
-    // static navigationOptions = {
-    //     header: null,
-    // };
     static navigationOptions = {
         title: 'VAT EAST',
         headerStyle: {
