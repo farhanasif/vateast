@@ -184,24 +184,25 @@ export default class CheckBinDetailScreen extends React.Component {
             <Text style={{ fontSize: 16, paddingTop: 10, color: '#787878' }}>
               Do You want to complain ?
             </Text>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                paddingBottom: 10,
+                paddingTop: 5,
+                margin: 5,
+                paddingLeft: 10,
+                paddingRight: 10,
+              }}>
+              <TouchableOpacity style={styles.button}>
+                <Text style={styles.buttonText}>YES</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.button1}>
+                <Text style={styles.buttonText}>NO</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View
-            style={{
-              flex: 1,
-              flexDirection: 'row',
-              paddingBottom: 10,
-              paddingTop: 5,
-              margin: 5,
-              paddingLeft: 10,
-              paddingRight: 10,
-            }}>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>YES</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button1}>
-              <Text style={styles.buttonText}>NO</Text>
-            </TouchableOpacity>
-          </View>
+          
         </View>
       </ScrollView>
     );
