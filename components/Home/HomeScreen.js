@@ -39,7 +39,7 @@ export default class HomeScreen extends React.Component {
                         borderColor: '#d6d6d6',
                         borderWidth: 1,
                         marginLeft: -1 }}>
-                        <FontAwesome name="book" size={40} color="black" />
+                        <FontAwesome name="book" size={32} color="black" />
                         <Text style={{color: 'black', marginTop: 10}}>Regulations</Text>
                     </View>
                 </TouchableOpacity>
@@ -52,7 +52,7 @@ export default class HomeScreen extends React.Component {
                         borderColor: '#d6d6d6',
                         borderWidth: 1,
                         marginLeft: -1}}>
-                        <FontAwesome name="search" size={40} color="black" />
+                        <FontAwesome name="search" size={32} color="black" />
                         <Text style={{color: 'black', marginTop: 10}}>Check BIN</Text>
                     </View>
                 </TouchableOpacity>
@@ -67,7 +67,7 @@ export default class HomeScreen extends React.Component {
                         borderWidth: 1,
                         marginLeft: -1
                     }}>
-                        <FontAwesome name="files-o" size={40} color="black" />
+                        <FontAwesome name="files-o" size={32} color="black" />
                         <Text style={{color: 'black', marginTop: 10}}>Resources</Text>
                     </View>
                 </TouchableOpacity>
@@ -78,12 +78,12 @@ export default class HomeScreen extends React.Component {
                         alignItems: 'center', 
                         justifyContent: 'center',
                         width: (width/3)+2, 
-                        height: 120,
+                        height: (height/5),
                         borderColor: '#d6d6d6',
                         borderWidth: 1,
                         marginLeft: -1
                     }}>
-                        <FontAwesome name="file-text" size={40} color="black" />
+                        <FontAwesome name="file-text" size={32} color="black" />
                         <Text style={{color: 'black', marginTop: 10}}>Reports</Text>
                     </View>
                 </TouchableOpacity>
@@ -94,12 +94,12 @@ export default class HomeScreen extends React.Component {
                         alignItems: 'center', 
                         justifyContent: 'center',
                         width: (width/3)+2, 
-                        height: 120,
+                        height: (height/5),
                         borderColor: '#d6d6d6',
                         borderWidth: 1,
                         marginLeft: -1
                     }}>
-                        <FontAwesome name="ticket" size={40} color="black" />
+                        <FontAwesome name="ticket" size={32} color="black" />
                         <Text style={{color: 'black', marginTop: 10}}>Complain</Text>
                     </View>
                 </TouchableOpacity>
@@ -108,12 +108,12 @@ export default class HomeScreen extends React.Component {
                     alignItems: 'center', 
                     justifyContent: 'center',
                     width: (width/3)+2, 
-                    height: 120,
+                    height: (height/5),
                     borderColor: '#d6d6d6',
                     borderWidth: 1,
                     marginLeft: -1
                 }}>
-                    <FontAwesome name="calculator" size={40} color="black" />
+                    <FontAwesome name="calculator" size={32} color="black" />
                     <Text style={{color: 'black', marginTop: 10}}>Calculator</Text>
                 </View>
                 </TouchableOpacity>
@@ -125,12 +125,12 @@ export default class HomeScreen extends React.Component {
                         alignItems: 'center', 
                         justifyContent: 'center',
                         width: (width/3)+2, 
-                        height: 120,
+                        height: (height/5),
                         borderColor: '#d6d6d6',
                         borderWidth: 1,
                         marginLeft: -1
                     }}>
-                        <FontAwesome name="wpforms" size={40} color="black" />
+                        <FontAwesome name="wpforms" size={32} color="black" />
                         <Text style={{color: 'black', marginTop: 10}}>Forms</Text>
                     </View>
                 </TouchableOpacity>
@@ -139,12 +139,12 @@ export default class HomeScreen extends React.Component {
                         alignItems: 'center', 
                         justifyContent: 'center',
                         width: (width/3)+2, 
-                        height: 120,
+                        height: (height/5),
                         borderColor: '#d6d6d6',
                         borderWidth: 1,
                         marginLeft: -1
                     }}>
-                        <FontAwesome name="handshake-o" size={40} color="black" />
+                        <FontAwesome name="handshake-o" size={32} color="black" />
                         <Text style={{color: 'black', marginTop: 10}}>Support</Text>
                     </View>
                 </TouchableOpacity>
@@ -154,12 +154,12 @@ export default class HomeScreen extends React.Component {
                         alignItems: 'center', 
                         justifyContent: 'center',
                         width: (width/3)+2, 
-                        height: 120,
+                        height: (height/5),
                         borderColor: '#d6d6d6',
                         borderWidth: 1,
                         marginLeft: -1
                     }}>
-                        <FontAwesome name="sellsy" size={40} color="black" />
+                        <FontAwesome name="sellsy" size={32} color="black" />
                         <Text style={{color: 'black', marginTop: 10}}>Online Service</Text>
                     </View>
                 </TouchableOpacity>
@@ -170,12 +170,12 @@ export default class HomeScreen extends React.Component {
                         alignItems: 'center', 
                         justifyContent: 'center',
                         width: (width/3)+2, 
-                        height: 120,
+                        height: (height/5),
                         borderColor: '#d6d6d6',
                         borderWidth: 1,
                         marginLeft: -1
                     }}>
-                        <FontAwesome name="user-o" size={40} color="black" />
+                        <FontAwesome name="user-o" size={32} color="black" />
                         <Text style={{color: 'black', marginTop: 10}}>Profile</Text>
                     </View>
                 </TouchableOpacity>
@@ -184,7 +184,7 @@ export default class HomeScreen extends React.Component {
                     alignItems: 'center', 
                     justifyContent: 'center',
                     width: (width/3)+2, 
-                    height: 120,
+                    height: (height/5),
                     borderColor: '#d6d6d6',
                     borderWidth: 1,
                     marginLeft: -1
@@ -195,11 +195,11 @@ export default class HomeScreen extends React.Component {
                         alignItems: 'center', 
                         justifyContent: 'center',
                         width: (width/3)+2, 
-                        height: 120,
+                        height: (height/5),
                         borderColor: '#d6d6d6',
                         borderWidth: 1,
                         marginLeft: -1 }}>
-                        <MaterialIcons name="video-label" size={40} color="black" />
+                        <MaterialIcons name="video-label" size={32} color="black" />
                         <Text style={{color: 'black', marginTop: 10}}>VAT eLearning</Text>
                     </View>
                 </TouchableOpacity>
