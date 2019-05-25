@@ -7,12 +7,16 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   Alert,
-  Modal,
+  AsyncStorage,
   Image,
   ScrollView,
 } from 'react-native';
 
 import Moment from 'moment';
+
+const STORAGE_KEY = 'MYKEY'
+const STORAGE_ROLE = 'MYROLE'
+const STORAGE_PHONE = 'MYPHONE'
 
 
 export default class CheckBinDetailScreen extends React.Component {
@@ -37,6 +41,59 @@ export default class CheckBinDetailScreen extends React.Component {
     reply: '',
     modalVisible: false,
   };
+
+  _pressYes = async () => {
+    try {
+    const name = await AsyncStorage.getItem(STORAGE_KEY)
+    const phone = await AsyncStorage.getItem(STORAGE_PHONE)
+    
+    if (name !== null) {
+        this.setState({name})
+        if(phone !== null){
+            this.setState({phone})
+            console.log(phone)
+        }
+
+        if(name == 'true'){
+          //go to complain screen
+          console.log('go to complain screen with BIN');
+          const { navigation } = this.props;
+          const BIN = navigation.getParam('BIN', 'NO-ID');
+          const otherParam = navigation.getParam('otherParam', {});
+          let name = ''
+          let address = ''
+          if(BIN == 'new'){
+            name = otherParam.new_info_info.NAME;
+            address = otherParam.new_info_info.ADDRESS;
+          }else{
+            name = otherParam.old_info_info.Name;
+            address = otherParam.old_info_info.Address1 + ' ' + otherParam.old_info_info.Address2
+          }
+
+          this.props.navigation.navigate('ComplainScreen',{
+            name : name,
+            address: address
+          })
+        }
+        else{
+          //go to login
+          this.props.navigation.navigate('ComplainLoginScreen')
+        }
+    }
+    else{
+
+    }
+
+    
+    } catch (e) {
+        //this.props.navigation.navigate('Welcome')
+        console.error('Failed to load name. '+ e)
+    }
+  }
+
+  _pressNo = () => {
+    this.props.navigation.navigate('Home')
+  }
 
   render() {
     const { isFocused } = this.state;
@@ -223,10 +280,10 @@ export default class CheckBinDetailScreen extends React.Component {
                 paddingLeft: 10,
                 paddingRight: 10,
               }}>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity style={styles.button} onPress={() => this._pressYes()}>
                 <Text style={styles.buttonText}>YES</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.button1}>
+              <TouchableOpacity style={styles.button1} onPress={() => this._pressNo()}>
                 <Text style={styles.buttonText}>NO</Text>
               </TouchableOpacity>
             </View>
