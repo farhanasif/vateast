@@ -1,15 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, KeyboardAvoidingView, AsyncStorage } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 import { Input, Button, ThemeProvider } from 'react-native-elements';
+
+const STORAGE_KEY = 'MYKEY'
+const STORAGE_ROLE = 'MYROLE'
+const STORAGE_PHONE = 'MYPHONE'
 
 
 export default class ComplainLoginScreen extends React.Component {
     static navigationOptions = {
-        title: 'Complain',
+        title: 'Login',
         headerStyle: {
             backgroundColor: '#fff',
         },
@@ -19,9 +21,57 @@ export default class ComplainLoginScreen extends React.Component {
         },
     };
 
+    constructor(props){
+        super(props)
+        this.state = {
+            password: '',
+            phone: '',
+        }
+    }
+
     componentWillMount() {
         console.log('loaded')
     }
+
+    handlePhone = text => {
+        this.setState({ phone: text });
+    };
+
+    handlePass = text => {
+        this.setState({ password: text });
+    };
+
+    login = async() => {
+        //cheaking verify code
+        console.log('here');
+        if(this.state.phone.length > 0 && this.state.password.length > 0){
+            let body = 'phone='+this.state.phone+'&pass='+this.state.password;
+
+            fetch('http://vatdhkeast.gov.bd/user-login', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
+                },
+                body: body, // <-- Post parameters
+            })
+            .then(response => response.json())
+            .then(responseText => {
+                console.log(responseText.response);
+                if(responseText.response == 'no'){
+                    alert('Phone or password does not match')
+                }else{
+                    AsyncStorage.setItem(STORAGE_KEY, 'true')
+                    AsyncStorage.setItem(STORAGE_ROLE, '1234')
+                    AsyncStorage.setItem(STORAGE_PHONE, this.state.phone)
+                    this.props.navigation.navigate('CheckBinScreen')
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        }
+        
+    };
     
 
     render() {
@@ -81,20 +131,17 @@ export default class ComplainLoginScreen extends React.Component {
                     <Input
                         leftIcon={
                         <FontAwesome
-                            name="wpforms"
+                            name="phone"
                             color="white"
                             size={25}
                         />
                         }
-                        placeholder="Email"
+                        placeholder="Phone"
                         autoCapitalize="none"
                         autoCorrect={false}
-                        keyboardType="email-address"
+                        keyboardType="numeric"
                         returnKeyType="next"
-                        ref={input => (this.email2Input = input)}
-                        onSubmitEditing={() => {
-                        this.password2Input.focus();
-                        }}
+                        onChangeText={this.handlePhone}
                     />
                     <Input
                         leftIcon={
@@ -110,10 +157,7 @@ export default class ComplainLoginScreen extends React.Component {
                         autoCorrect={false}
                         keyboardType="default"
                         returnKeyType="next"
-                        ref={input => (this.password2Input = input)}
-                        onSubmitEditing={() => {
-                        this.confirmPassword2Input.focus();
-                        }}
+                        onChangeText={this.handlePass}
                     />
                     <Button
                         title="Login"
@@ -124,6 +168,9 @@ export default class ComplainLoginScreen extends React.Component {
                             borderRadius: 40,
                             borderWidth: 1,
                             borderColor: '#8BC34A',
+                        }}
+                        onPress={() => {
+                            this.login();
                         }}
                     />
                     </View>

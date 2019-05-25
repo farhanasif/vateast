@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, AsyncStorage } from 'react-native';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import LinearGradient from 'react-native-linear-gradient';
 
+const STORAGE_KEY = 'MYKEY'
+const STORAGE_ROLE = 'MYROLE'
+const STORAGE_PHONE = 'MYPHONE'
 
 export default class HomeScreen extends React.Component {
     static navigationOptions = {
@@ -18,7 +19,56 @@ export default class HomeScreen extends React.Component {
             fontWeight: 'bold',
         },
     };
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: 'false',
+            phone: '',
+        };
+    }
+
+
     
+    componentWillMount = async() => {
+        await this.load();
+    }
+
+    load = async () => {
+        try {
+        const name = await AsyncStorage.getItem(STORAGE_KEY)
+        const phone = await AsyncStorage.getItem(STORAGE_PHONE)
+        
+        if (name !== null) {
+            this.setState({name})
+            if(phone !== null){
+                this.setState({phone})
+                console.log(phone)
+            }
+        }
+        else{
+
+        }
+
+        
+        } catch (e) {
+            //this.props.navigation.navigate('Welcome')
+            console.error('Failed to load name. '+ e)
+        }
+    }
+
+
+    _goToComplain = () => {
+        if(this.state.name == 'false'){
+            this.props.navigation.navigate('ComplainLoginScreen')
+        }else{
+            this.props.navigation.navigate('CheckBinScreen')
+        }
+        
+    }
+
+
+
 
     render() {
         var {height, width} = Dimensions.get('window');
@@ -85,7 +135,7 @@ export default class HomeScreen extends React.Component {
                     </View>
                 </TouchableOpacity>
                 
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('ComplainLoginScreen')}>
+                <TouchableOpacity onPress={() => this._goToComplain()}>
                     <View style={{
                         backgroundColor: '#fff',
                         alignItems: 'center', 

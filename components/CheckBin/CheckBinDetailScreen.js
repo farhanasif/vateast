@@ -17,8 +17,15 @@ import Moment from 'moment';
 
 export default class CheckBinDetailScreen extends React.Component {
   static navigationOptions = {
-    title: 'Detail',
-  };
+    title: 'BIN DETAILS',
+    headerStyle: {
+        backgroundColor: '#168814',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+        fontWeight: 'bold',
+    },
+};
 
   setModalVisible(visible) {
     this.setState({ modalVisible: visible });
@@ -94,7 +101,23 @@ export default class CheckBinDetailScreen extends React.Component {
               }}>
               <Text style={{ fontSize: 16, color: '#787878' }}>
                 {BIN === 'new'
-                  ? otherParam.new_info_info.COMM_CODE
+                  ? otherParam.new_info_info.COMM_CODE === 'AA00'
+                    ? 'Customs, Excise and VAT Commissionerate, Rangpur'
+                      : otherParam.new_info_info.COMM_CODE === 'BA00'
+                        ? 'Customs, Excise and VAT Commissionerate, Rajshahi'
+                          : otherParam.new_info_info.COMM_CODE === 'DA00'
+                            ? 'Customs, Excise and VAT Commissionerate, Jessore'
+                              : otherParam.new_info_info.COMM_CODE === 'EA00'
+                                ? 'Customs, Excise and VAT Commissionerate, Khulna'
+                                : otherParam.new_info_info.COMM_CODE === 'GA00'
+                                  ? 'Customs, Excise and VAT Commissionerate, Dhaka (West)'
+                                    : otherParam.new_info_info.COMM_CODE === 'HA00'
+                                      ? 'Customs, Excise and VAT Commissionerate, Dhaka (North)'
+                                      : otherParam.new_info_info.COMM_CODE === 'IA00'
+                                        ? 'Customs, Excise and VAT Commissionerate, Dhaka (South)'
+                                        : otherParam.new_info_info.COMM_CODE === 'KA00'
+                                          ? 'Customs, Excise and VAT Commissionerate, Jessore'
+                                          : 'Customs, Excise and VAT Commissionerate, Dhaka (West)'
                   : otherParam.old_info_info.TypeName}
               </Text>
             </View>
@@ -166,11 +189,17 @@ export default class CheckBinDetailScreen extends React.Component {
                 width: 180,
                 paddingTop: 1,
               }}>
-              <Text style={{ fontSize: 14, color: '#787878' }}>
+              <Text style={{ fontSize: 14, color: BIN === 'new'
+              ? otherParam.new_info_info.STATUS === '1'
+                ? 'green'
+                : 'red'
+              : 'green'  }}>
                 {BIN === 'new'
                   ? otherParam.new_info_info.STATUS === '1'
                     ? 'Active'
-                    : 'Inactive'
+                    : otherParam.new_info_info.STATUS === '2'
+                      ? 'Suspend'
+                      : 'Cancelled'
                   : 'Active'}
               </Text>
             </View>
@@ -255,7 +284,6 @@ const styles = StyleSheet.create({
     paddingBottom: 3,
   },
   addressStyle2: {
-    height: 40,
     flex: 1,
     flexDirection: 'row',
     marginLeft: 5,
