@@ -74,9 +74,9 @@ export default class ComplainLoginScreen extends React.Component {
     };
 
     forgetpass = () => {
-        this.props.navigation.navigate('UserOtpScreen', {
-            phone: '01717423040'
-        })
+        // this.props.navigation.navigate('UserOtpScreen', {
+        //     phone: '01717423040'
+        // })
     }
     
 
