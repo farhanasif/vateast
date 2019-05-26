@@ -19,6 +19,7 @@ import CheckBinDetailScreen from './components/CheckBin/CheckBinDetailScreen';
 import ComplainScreen from './components/Complain/ComplainScreen';
 import UserSignupScreen from './components/User/UserSignupScreen';
 import UserOtpScreen from './components/User/UserOtpScreen';
+import UserProfileScreen from './components/User/UserProfileScreen';
 
 import Act2012Screen from './components/Calculator/Act2012Screen';
 
@@ -42,7 +43,8 @@ const AppNavigator = createStackNavigator({
     CheckBinDetailScreen: CheckBinDetailScreen,
     ComplainScreen: ComplainScreen,
     UserSignupScreen: UserSignupScreen,
-    UserOtpScreen: UserOtpScreen
+    UserOtpScreen: UserOtpScreen,
+    UserProfileScreen: UserProfileScreen
   },
   {
     initialRouteName: "Home"

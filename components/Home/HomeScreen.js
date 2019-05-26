@@ -47,7 +47,7 @@ export default class HomeScreen extends React.Component {
             }
         }
         else{
-
+            console.log('log out mode')
         }
 
         
@@ -63,6 +63,15 @@ export default class HomeScreen extends React.Component {
             this.props.navigation.navigate('ComplainLoginScreen')
         }else{
             this.props.navigation.navigate('CheckBinScreen')
+        }
+        
+    }
+
+    _goToProfile = () => {
+        if(this.state.name == 'false'){
+            this.props.navigation.navigate('ComplainLoginScreen')
+        }else{
+            this.props.navigation.navigate('UserProfileScreen')
         }
         
     }
@@ -212,7 +221,7 @@ export default class HomeScreen extends React.Component {
                 </TouchableOpacity>
             </View>
             <View style={styles.buttonsContainer}>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('ComplainLoginScreen')}>
+                <TouchableOpacity onPress={() => this._goToProfile()}>
                     <View style={{
                         alignItems: 'center', 
                         justifyContent: 'center',

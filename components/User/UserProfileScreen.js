@@ -2,16 +2,15 @@ import React from 'react';
 import { StyleSheet, Text, View, Dimensions, KeyboardAvoidingView, AsyncStorage } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
-import { Input, Button, ThemeProvider } from 'react-native-elements';
+import { Input, Button, ThemeProvider, CheckBox } from 'react-native-elements';
 
 const STORAGE_KEY = 'MYKEY'
-const STORAGE_ROLE = 'MYROLE'
 const STORAGE_PHONE = 'MYPHONE'
 
 
-export default class ComplainLoginScreen extends React.Component {
+export default class UserProfileScreen extends React.Component {
     static navigationOptions = {
-        title: 'Login',
+        title: 'User Profile',
         headerStyle: {
             backgroundColor: '#fff',
         },
@@ -24,59 +23,53 @@ export default class ComplainLoginScreen extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            password: '',
+            name: '',
             phone: '',
+            gender: 'male',
+            malechecked: true,
+            femalechecked: false
         }
     }
 
     componentWillMount() {
-        console.log('loaded')
+        this.load()
     }
+    
+    load = async () => {
+        try {
+            const name = await AsyncStorage.getItem(STORAGE_KEY)
+            const phone = await AsyncStorage.getItem(STORAGE_PHONE)
+        
+            if (name !== null) {
+                this.setState({name})
+                this.setState({phone})
+            }
+        } catch (e) {
+            this.props.navigation.navigate('Home')
+            //console.error('Failed to load name. '+ e)
+        }
+    }
+
+    handleName = text => {
+        this.setState({ name: text });
+    };
 
     handlePhone = text => {
         this.setState({ phone: text });
     };
 
-    handlePass = text => {
-        this.setState({ password: text });
-    };
+    _signout = async () => {
+        try {
+            await AsyncStorage.setItem(STORAGE_KEY, 'false')
+            await AsyncStorage.setItem(STORAGE_PHONE, null)
+            
+            this.props.navigation.navigate('Home')
 
-    login = async() => {
-        //cheaking verify code
-        console.log('here');
-        if(this.state.phone.length > 0 && this.state.password.length > 0){
-            let body = 'phone='+this.state.phone+'&pass='+this.state.password;
-
-            fetch('http://vatdhkeast.gov.bd/user-login', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
-                },
-                body: body, // <-- Post parameters
-            })
-            .then(response => response.json())
-            .then(async(responseText) => {
-                console.log(responseText.response);
-                if(responseText.response == 'no'){
-                    alert('Phone or password does not match')
-                }else{
-                    await AsyncStorage.setItem(STORAGE_KEY, 'true')
-                    await AsyncStorage.setItem(STORAGE_ROLE, '1234')
-                    await AsyncStorage.setItem(STORAGE_PHONE, this.state.phone)
-                    this.props.navigation.navigate('CheckBinScreen')
-                }
-            })
-            .catch(error => {
-                console.error(error);
-            });
+        } catch (e) {
+            this.setState({loading: false});
+            console.error('Failed to remove name.' + e)
         }
         
-    };
-
-    forgetpass = () => {
-        // this.props.navigation.navigate('UserOtpScreen', {
-        //     phone: '01717423040'
-        // })
     }
     
 
@@ -94,8 +87,6 @@ export default class ComplainLoginScreen extends React.Component {
                     height: 300,
                     }}
                 />
-                <FontAwesome name="wpforms" size={60} color="white" />
-                <Text style={{color: 'white', margin:10}}>VAT SMART!</Text>
                 <ThemeProvider
                     theme={{
                     Input: {
@@ -127,13 +118,28 @@ export default class ComplainLoginScreen extends React.Component {
                     <Text
                         style={{
                         color: 'white',
-                        fontSize: 16,
+                        fontSize: 20,
                         marginVertical: 10,
-                        fontWeight: '300',
+                        fontWeight: '700',
                         }}
                     >
-                        Sign in
+                        User Profile
                     </Text>
+                    <Input
+                        leftIcon={
+                        <FontAwesome
+                            name="check"
+                            color="white"
+                            size={25}
+                        />
+                        }
+                        placeholder="Name"
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        keyboardType="default"
+                        returnKeyType="next"
+                        onChangeText={this.handleName}
+                    />
                     <Input
                         leftIcon={
                         <FontAwesome
@@ -147,67 +153,63 @@ export default class ComplainLoginScreen extends React.Component {
                         autoCorrect={false}
                         keyboardType="numeric"
                         returnKeyType="next"
+                        value={this.state.phone}
                         onChangeText={this.handlePhone}
                     />
-                    <Input
-                        leftIcon={
-                        <FontAwesome
-                            name="lock"
-                            color="white"
-                            size={25}
+                    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+                        <CheckBox
+                            center
+                            title='Male'
+                            checked={this.state.malechecked}
+                            containerStyle={{backgroundColor: 'transparent', borderWidth: 0}}
+                            checkedColor='white'
+                            textStyle={{color: 'white'}}
+                            onPress={() => {
+                                this.setState({malechecked: !this.state.malechecked})
+                                this.setState({femalechecked: !this.state.femalechecked})
+                            }}
                         />
-                        }
-                        placeholder="Password"
-                        autoCapitalize="none"
-                        secureTextEntry={true}
-                        autoCorrect={false}
-                        keyboardType="default"
-                        returnKeyType="next"
-                        onChangeText={this.handlePass}
-                    />
+                        <CheckBox
+                            center
+                            title='Female'
+                            checked={this.state.femalechecked}
+                            containerStyle={{backgroundColor: 'transparent', borderWidth: 0}}
+                            checkedColor='white'
+                            textStyle={{color: 'white'}}
+                            onPress={() => {
+                                this.setState({malechecked: !this.state.malechecked})
+                                this.setState({femalechecked: !this.state.femalechecked})
+                            }}
+                        />
+                    </View>
                     <Button
-                        title="Login"
+                        title="Update"
                         containerStyle={{paddingTop: 20,}}
                         buttonStyle={{
                             backgroundColor: '#8BC34A', 
-                            width: 280,
+                            width: 180,
                             borderRadius: 40,
                             borderWidth: 1,
                             borderColor: '#8BC34A',
                         }}
                         onPress={() => {
-                            this.login();
+                            this.update();
                         }}
                     />
-                    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-                        <Button
-                            title="Register"
-                            containerStyle={{paddingTop: 20,}}
-                            buttonStyle={{
-                                backgroundColor: '#8BC34A', 
-                                width: 130,
-                                borderRadius: 40,
-                                borderWidth: 1,
-                                borderColor: '#8BC34A',
-                            }}
-                            onPress={() => {
-                                this.props.navigation.navigate('UserSignupScreen');
-                            }}
-                        />
-                        <Button
-                            title="Forgot password?"
-                            containerStyle={{paddingTop: 20,}}
-                            buttonStyle={{
-                                backgroundColor: 'transparent', 
-                                width: 180,
-                            }}
-                            onPress={() => {
-                                this.forgetpass();
-                            }}
-                        />
-                    
-                    </View>
-                    
+                    <Button
+                        title="Logout"
+                        containerStyle={{paddingTop: 20,}}
+                        buttonStyle={{
+                            backgroundColor: '#8BC34A', 
+                            width: 180,
+                            borderRadius: 40,
+                            borderWidth: 1,
+                            borderColor: '#8BC34A',
+                        }}
+                        onPress={() => {
+                            this._signout();
+                        }}
+                    />
                     </View>
                 </ThemeProvider>
                 
