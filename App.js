@@ -23,6 +23,9 @@ import UserProfileScreen from './components/User/UserProfileScreen';
 
 import Act2012Screen from './components/Calculator/Act2012Screen';
 
+console.disableYellowBox = true;
+
+
 const AppNavigator = createStackNavigator({
     Home: HomeScreen,
     Regulations: RegulationsHomeSCreen,

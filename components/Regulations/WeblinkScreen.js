@@ -1,6 +1,8 @@
 import React from 'react';
-import { View, Dimensions, WebView, ActivityIndicator } from 'react-native';
+import { View, Dimensions, ActivityIndicator } from 'react-native';
 import Loader from '../Others/Loader';
+import { WebView } from 'react-native-webview';
+
 
 
 
@@ -34,7 +36,7 @@ export default class WeblinkScreen extends React.Component {
     componentDidMount(){
         const { navigation } = this.props;
         this.setState({title : navigation.getParam('title', 'NO-name')})
-        this.setState({url : navigation.getParam('url', 'NO-email')})
+        this.setState({url : navigation.getParam('url', 'http://nbr.gov.bd/')})
     }
 
     componentWillMount() {

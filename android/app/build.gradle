@@ -129,6 +129,7 @@ android {
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
@@ -156,6 +157,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-webview')
     implementation project(':react-native-pdf')
     implementation project(':rn-fetch-blob')
     implementation project(':react-native-linear-gradient')
