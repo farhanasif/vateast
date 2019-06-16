@@ -4,7 +4,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
-import { Input, Button, ThemeProvider } from 'react-native-elements';
+import { Input, Button, ThemeProvider, CheckBox } from 'react-native-elements';
+
 
 
 export default class Act2012Screen extends React.Component {
@@ -26,6 +27,8 @@ export default class Act2012Screen extends React.Component {
             vatamount: 0,
             value: 0,
             flag:false,
+            exclude: false,
+            include: true
         }
     }
 
@@ -58,12 +61,6 @@ export default class Act2012Screen extends React.Component {
         var {height, SCREEN_WIDTH} = Dimensions.get('window');
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
-                <View style={{alignItems: 'flex-end'}}>
-                    <Image
-                        style={{width: 100, height: 100}}
-                        source={require('../../assets/icon.png')}
-                    />
-                </View>
                 <Text style={{color: '#ADB5B1', margin:10}}>Act 2012</Text>
                 <ThemeProvider
                     theme={{
@@ -108,6 +105,27 @@ export default class Act2012Screen extends React.Component {
                         keyboardType="numeric"
                         onChangeText={(amount) => this.setState({amount})}
                     />
+                    {/*<View>
+                        <CheckBox
+                            title='VAT Exclusive'
+                            checked={this.state.exclude}
+                            onPress={() => {
+                                this.setState({exclude: !this.state.exclude})
+                                this.setState({include: !this.state.include})
+                            }}
+                            checkedColor="#8BC34A"
+                        />
+                        <CheckBox
+                            title='VAT Inclusive'
+                            checked={this.state.include}
+                            onPress={() => {
+                                this.setState({exclude: !this.state.exclude})
+                                this.setState({include: !this.state.include})
+                            }}
+                            checkedColor="#8BC34A"
+                        />
+                        </View>*/}
+                    
                     <Button
                         title="Calculate"
                         containerStyle={{paddingTop: 20,}}
@@ -121,10 +139,23 @@ export default class Act2012Screen extends React.Component {
                         onPress={() => {
 
                             if(this.state.amount > 0){
-                                let vatamount = parseFloat(this.state.amount*.15).toFixed(2);
-                                let value = parseFloat(this.state.amount - vatamount).toFixed(2);
-                                this.setState({vatamount});
-                                this.setState({value});
+                                if(this.state.exclude){
+                                    //alert('price excluding');
+                                    let vatamount = parseFloat(this.state.amount*.15);
+                                    let value = parseFloat(this.state.amount);
+                                    value = (value+vatamount).toFixed(2);
+                                    vatamount = vatamount.toFixed(2);
+                                    this.setState({vatamount});
+                                    this.setState({value});
+                                }else{
+                                    let value = (parseFloat(this.state.amount)*100)/115;
+                                    let vatamount = parseFloat(this.state.amount)-value;
+                                    value = value.toFixed(2);
+                                    vatamount = vatamount.toFixed(2);
+                                    this.setState({vatamount});
+                                    this.setState({value});
+                                }
+                                
                             }
                             this.setState({
                                 flag: true
@@ -139,7 +170,7 @@ export default class Act2012Screen extends React.Component {
                 <View>
                     <Text>VAT Rate</Text>
                     <Text style={{fontWeight:'bold', color:'red'}}>15 %</Text>
-                    <Text>All prices are inclusive VAT</Text>
+                    {this.state.include ? <Text>All prices are inclusive VAT</Text>: <Text>All prices are exclusive VAT</Text>}
                 </View>
             </KeyboardAvoidingView>
         );

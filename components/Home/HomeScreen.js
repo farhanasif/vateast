@@ -159,7 +159,7 @@ export default class HomeScreen extends React.Component {
                         <Text style={{color: 'black', marginTop: 10}}>Complain</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Act2012Screen')}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Act2012ScreenCalculator')}>
                 <View style={{
                     alignItems: 'center', 
                     justifyContent: 'center',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { createStackNavigator, createAppContainer, createMaterialTopTabNavigator } from "react-navigation";
 import HomeScreen from './components/Home/HomeScreen';
 import RegulationsHomeSCreen from './components/Regulations/RegulationsHomeScreen';
 import FinanceActScreen from './components/Regulations/FinanceActScreen';
@@ -22,9 +22,33 @@ import UserOtpScreen from './components/User/UserOtpScreen';
 import UserProfileScreen from './components/User/UserProfileScreen';
 
 import Act2012Screen from './components/Calculator/Act2012Screen';
+import Act1991ScreenCalculator from './components/Calculator/Act1991ScreenCalculator';
 
 console.disableYellowBox = true;
 
+const TabNavigator = createMaterialTopTabNavigator({
+  Act1991ScreenCalc: Act1991ScreenCalculator,
+  Act2012Screen: Act2012Screen,
+},{
+  tabBarOptions: {
+    labelStyle: {
+      fontSize: 12,
+    },
+    style: {
+      backgroundColor: 'green',
+    },
+  },
+  navigationOptions: {
+    title: 'VAT CALCULATOR',
+    headerStyle: {
+        backgroundColor: '#168814',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+        fontWeight: 'bold',
+    },
+  }
+});
 
 const AppNavigator = createStackNavigator({
     Home: HomeScreen,
@@ -42,7 +66,7 @@ const AppNavigator = createStackNavigator({
     LearningHomeScreen: LearningHomeScreen,
     ComplainLoginScreen: ComplainLoginScreen,
     SupportHomeSCreen: SupportHomeSCreen,
-    Act2012Screen: Act2012Screen,
+    Act2012ScreenCalculator: TabNavigator,
     CheckBinDetailScreen: CheckBinDetailScreen,
     ComplainScreen: ComplainScreen,
     UserSignupScreen: UserSignupScreen,
@@ -53,6 +77,8 @@ const AppNavigator = createStackNavigator({
     initialRouteName: "Home"
   }
 );
+
+
 
 const AppContainer = createAppContainer(AppNavigator);
 
