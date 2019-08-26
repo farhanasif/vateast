@@ -1,7 +1,8 @@
 import React from 'react';
 import { createStackNavigator, createAppContainer, createMaterialTopTabNavigator } from "react-navigation";
 import HomeScreen from './components/Home/HomeScreen';
-import RegulationsHomeSCreen from './components/Regulations/RegulationsHomeScreen';
+import RegulationHomeScreen from './components/Regulations/RegulationsHomeScreen';
+import RegulationHomeScreen2 from './components/Regulations/RegulationHomeScreen2';
 import FinanceActScreen from './components/Regulations/FinanceActScreen';
 import VatAct1991Screen from './components/Regulations/VatAct1991Screen';
 import VatSDAct2012BanScreen from './components/Regulations/VatSDAct2012BanScreen';
@@ -52,7 +53,7 @@ const TabNavigator = createMaterialTopTabNavigator({
 
 const AppNavigator = createStackNavigator({
     Home: HomeScreen,
-    Regulations: RegulationsHomeSCreen,
+    Regulations: RegulationHomeScreen2,
     FinanceActScreen: FinanceActScreen,
     VatAct1991Screen: VatAct1991Screen,
     VatSDAct2012BanScreen: VatSDAct2012BanScreen,
