@@ -15,52 +15,34 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const list = [
     {
-        name: 'Finance Acts',
-        linearGradientColors: ['#93291E', '#ED213A'],
-        screen: 'FinanceActScreen',
-        url:'',
-    },
-    {
-        name: 'Vat Act, 1991',
-        linearGradientColors: ['#3F51B5', '#2196F3'],
-        screen: 'VatAct1991Screen',
-        url:'',
-    },
-    {
-        name: 'VAT & SD Act, 2012 (Bangla)',
-        linearGradientColors: ['#FFD600', '#FF9800'],
-        screen: 'VatSDAct2012BanScreen',
-        url:'',
-    },
-    {
-        name: 'VAT & SD Act, 2012 (English)',
-        linearGradientColors: ['#000000', '#0f9b0f'],
-        screen: 'VatAct2012EngScreen',
-        url:'https://google.com',
-    },
-    {
-        name: 'VAT Rules, 1991',
-        linearGradientColors: ['#f12711', '#f5af19'],
-        screen: 'WeblinkScreen',
-        url:'http://nbr.gov.bd/regulations/rules/vat-rules/eng',
-    },
-    {
-        name: 'General Orders',
+        name: 'eBIN Reports',
         linearGradientColors: ['#4CAF50', '#8BC34A'],
         screen: 'WeblinkScreen',
-        url:'http://nbr.gov.bd/regulations/gos/vat-gos/eng',
+        url:'http://nbr.gov.bd/information-library/e-bin-report/eng',
     },
     {
-        name: 'Special Orders',
-        linearGradientColors: ['#F44336', '#E91E63'],
+        name: 'Statistics',
+        linearGradientColors: ['#3F51B5', '#2196F3'],
         screen: 'WeblinkScreen',
-        url:'http://nbr.gov.bd/regulations/gos/vat-gos/eng',
+        url:'http://nbr.gov.bd/statistics/eng',
+    },
+    {
+        name: 'Publications',
+        linearGradientColors: ['#FFD600', '#FF9800'],
+        screen: 'WeblinkScreen',
+        url:'http://nbr.gov.bd/publications/all-publication/eng',
+    },
+    {
+        name: 'Advisor List',
+        linearGradientColors: ['#000000', '#0f9b0f'],
+        screen: 'WeblinkScreen',
+        url:'http://nbr.gov.bd/information-library/vat-advisors/eng',
     },
 ];
 
 export default class RegulationHomeScreen2 extends React.Component {
   static navigationOptions = {
-    title: 'Regulations',
+    title: 'Reports',
     headerStyle: {
       backgroundColor: 'green',
     },

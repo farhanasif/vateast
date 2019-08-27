@@ -10,7 +10,7 @@ import WeblinkScreen from './components/Regulations/WeblinkScreen';
 import VatAct2012EngScreen from './components/Regulations/VatAct2012EngScreen';
 import CheckBinScreen from './components/CheckBin/CheckBinScreen';
 import ResourcesHomeScreen from './components/Resources/ResourcesHomeScreen';
-import ReportsHomeSCreen from './components/Reports/ReportsHomeScreen';
+import ReportsHomeSCreen2 from './components/Reports/ReportsHomeScreen2';
 import FormsHomeScreen from './components/Forms/FormsHomeScreen';
 import OnlineHomeSCreen from './components/Online/OnlineHomeScreen';
 import LearningHomeScreen from './components/Learning/LearningHomeScreen';
@@ -61,7 +61,7 @@ const AppNavigator = createStackNavigator({
     WeblinkScreen: WeblinkScreen,
     CheckBinScreen: CheckBinScreen,
     ResourcesHomeScreen: ResourcesHomeScreen,
-    ReportsHomeSCreen: ReportsHomeSCreen,
+    ReportsHomeSCreen: ReportsHomeSCreen2,
     FormsHomeScreen: FormsHomeScreen,
     OnlineHomeSCreen: OnlineHomeSCreen,
     LearningHomeScreen: LearningHomeScreen,
